@@ -3,3 +3,4 @@ function hello() {
 }
 
 hello();
+console.log("Hello GitHub!!!");
