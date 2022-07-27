@@ -51,11 +51,64 @@
 
 // stream module - used to optimize memory operation during reading the file.
 
+// const http = require("http");
+// const fs = require("fs");
+
+// const server = http.createServer(function (req, res) {
+//   const stream = fs.createReadStream("sample.txt");
+//   stream.pipe(res);
+// });
+// server.listen(3000);
+
+// use nodejs to display HTML
+
+// const http = require("http");
+// const fs = require("fs");
+// const { listenerCount } = require("process");
+
+// fs.readFile("home.html", function (err, home) {
+//   if (err) throw err;
+//   http
+//     .createServer(function (request, response) {
+//       response.writeHeader(200, { "Content-Type": "text/html" });
+//       response.write(home);
+//       response.end();
+//     })
+//     .listen(3000);
+// });
+
+// use path to display HTML
+
 const http = require("http");
 const fs = require("fs");
 
-const server = http.createServer(function (req, res) {
-  const stream = fs.createReadStream("sample.txt");
-  stream.pipe(res);
+let homeContent;
+let projectContent;
+
+fs.readFile("home.html", function (err, home) {
+  if (err) throw err;
+  homeContent = home;
 });
-server.listen(3000);
+
+fs.readFile("project.html", function (err, project) {
+  if (err) throw err;
+  projectContent = project;
+});
+
+http
+  .createServer(function (request, response) {
+    let url = request.url;
+    response.writeHeader(200, { "Content-Type": "text/html" });
+    switch (url) {
+      case "/project":
+        response.write(projectContent);
+        response.end();
+        break;
+
+      default:
+        response.write(homeContent);
+        response.end();
+        break;
+    }
+  })
+  .listen(3000);
