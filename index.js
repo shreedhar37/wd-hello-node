@@ -1,3 +1,4 @@
+console.log("Hello Node.js!");
 // load fs (file system) module
 //const fs = require("fs");
 
@@ -116,7 +117,7 @@
 //   })
 //   .listen(3000);
 // console.log("Server is running on localhost:3000");
-//console.log("Press ctrl + c to stop the server");
+// console.log("Press ctrl + c to stop the server");
 
 // ReadLine library
 // const readLine = require("readline");
@@ -132,22 +133,22 @@
 // });
 
 // display HTML by taking file path from user
-const readLine = require("readline");
-const fs = require("fs");
-const http = require("http");
+// const readLine = require("readline");
+// const fs = require("fs");
+// const http = require("http");
 
-const lineDetail = readLine.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+// const lineDetail = readLine.createInterface({
+//   input: process.stdin,
+//   output: process.stdout,
+// });
 
-lineDetail.question(`Please provide a path to the file : `, (path) => {
-  const server = http.createServer(function (request, response) {
-    const stream = fs.createReadStream(`${path}`);
-    stream.pipe(response);
-  });
-  lineDetail.close();
-  server.listen(3000);
-  console.log("Server is running on localhost:3000");
-  console.log("Press ctrl + c to stop the server");
-});
+// lineDetail.question(`Please provide a path to the file : `, (path) => {
+//   const server = http.createServer(function (request, response) {
+//     const stream = fs.createReadStream(`${path}`);
+//     stream.pipe(response);
+//   });
+//   lineDetail.close();
+//   server.listen(3000);
+//   console.log("Server is running on localhost:3000");
+//   console.log("Press ctrl + c to stop the server");
+// });
